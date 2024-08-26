@@ -1,5 +1,5 @@
 <template>
   <footer>
-    푸터
+    copyright EUNJISONG 2024
   </footer>
 </template>
