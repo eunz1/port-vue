@@ -162,6 +162,7 @@ export default {
       box-shadow: 12px -8px 19px 1px rgba(0, 0, 0, 0.2);
       @include mobile {
         width: 60vw;
+        padding: 10px;
       }
       @include pad {
         width: 45vw;
@@ -224,6 +225,11 @@ export default {
     }
     &__txt {
       margin-top: 20px;;
+      word-break: keep-all;
+      @include mobile {
+        font-size: 12px;
+        margin-top: 10px;;
+      }
       dl {
         display: flex;
         margin-top:10px;

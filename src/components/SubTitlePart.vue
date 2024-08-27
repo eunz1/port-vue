@@ -16,7 +16,6 @@ export default {
       const sections = gsap.utils.toArray('.section-unit');
       const titles = ['Intro','Profile','Project','contact'];
       sections.forEach((section, i)=>{
-        console.log(section)
         ScrollTrigger.create({
           scroller:main,
           trigger: section,
@@ -25,12 +24,10 @@ export default {
           scrub: true,
           onEnter: () => {
             const index = sections.indexOf(section);
-            console.log('enter',index,titles[index])
             subTitle.value.textContent = titles[index];
           },
           onEnterBack: () => {
             const index = sections.indexOf(section);
-            console.log('out',index,titles[index])
             subTitle.value.textContent = titles[index];
           }
         })
