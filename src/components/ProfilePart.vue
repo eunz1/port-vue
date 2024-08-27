@@ -5,7 +5,7 @@
         <div class="profile__photo">
           <figure>
             <div class="photo-box">
-              <img src="@/assets/images/my_pic.png" alt="프로필 사진">
+              <img :src="mypic" alt="프로필 사진">
             </div>
             <figcaption>
               <p class="profile__balloon">"기획과 개발 사이를 튼튼하게 이어주는 꼼꼼한 퍼블리싱을 하는 웹퍼블리셔 송은지 입니다."<span class="triangle"></span></p>
@@ -53,6 +53,7 @@ import { gsap } from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
+import mypic from "../assets/Images/my_pic.png"
 export default {
   setup() {
     const profileBox = ref(null)
@@ -113,7 +114,8 @@ export default {
       profileBox,
       profileTit,
       profilePhoto,
-      profileCont
+      profileCont,
+      mypic
     }
   }
   
