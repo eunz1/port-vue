@@ -1,6 +1,6 @@
 <template>
-  <section class="profile" ref="profileBox">
-      <div class="profile__tit lobster" ref="profileTit">Profile</div>
+  <section class="profile section-unit" ref="profileBox">
+      <!-- <div class="profile__tit lobster" ref="profileTit">Profile</div> -->
       <div class="profile__inner" ref="profilePhoto">
         <div class="profile__photo">
           <figure>
@@ -8,7 +8,7 @@
               <img src="@/assets/images/my_pic.png" alt="프로필 사진">
             </div>
             <figcaption>
-              <p class="profile__balloon">"기획과 개발 사이를 튼튼하게 이어주는 꼼꼼한 퍼블리싱을 하는 퍼블리셔 입니다"<span class="triangle"></span></p>
+              <p class="profile__balloon">"기획과 개발 사이를 튼튼하게 이어주는 꼼꼼한 퍼블리싱을 하는 웹퍼블리셔 송은지 입니다."<span class="triangle"></span></p>
               <span class="tag-tit lobster">Skills</span>
               <ul>
                 <li>
@@ -37,12 +37,12 @@
           </figure>
         </div>
         <ul class="profile__cont" ref="profileCont">
-          <li><span class="num">2016.2</span> 수원대학교 사학과 졸업</li>
-          <li><span class="num">2016.2 </span>컴퓨터활용능력 2급 취득</li>
-          <li><span class="num">2017.1 ~ 2017.5  </span>봄아카데미: 웹퍼블리셔 양성과정 수료 </li>
-          <li><span class="num">2017.12 ~ 2021.12  </span>웹에이전시: 디파이(DFY) <br> 4년 0개월 근무</li>
-          <li><span class="num">2019.11 </span>정보처리기사 취득</li>
-          <li><span class="num">2022.01 ~ 2024.04 </span>   명품판매 이커머스: 오케이몰(OKmall)<br>2년 4개월 근무</li>
+          <li><span class="num">2016.2</span>🎓<br>수원대학교 사학과 졸업</li>
+          <li><span class="num">2016.2 </span>📝<br>컴퓨터활용능력 2급 취득</li>
+          <li><span class="num">2017.1 ~ 2017.5  </span>🎓<br>봄아카데미: 웹퍼블리셔 양성과정 수료 </li>
+          <li><span class="num">2017.12 ~ 2021.12  </span>👩🏻‍💻<br> 웹에이전시: 디파이(DFY) <br> 4년 0개월 근무</li>
+          <li><span class="num">2019.11 </span>📝<br>정보처리기사 취득</li>
+          <li><span class="num">2022.01 ~ 2024.04 </span>👩🏻‍💻<br>명품판매 이커머스: 오케이몰(OKmall)<br>2년 4개월 근무</li>
         </ul>
       </div>
   </section>
@@ -170,11 +170,12 @@ export default {
     }
     .photo-box {
       position: relative;
-      border-radius: 50%;
-      overflow: hidden;
-      background: #bec6bb;;
       max-width: 300px;
       max-height: 300px;
+      margin:0 auto;
+      background: #bec6bb;;
+      border-radius: 50%;
+      overflow: hidden;
       @include mobile {
         width: 200px;
         height: 200px;
@@ -210,10 +211,13 @@ export default {
     left:50%;
     transform: translateX(-50%);
     max-width: 255px;
-    padding: 4px;
+    padding: 14px;
     background: #fff;;
     font-size: 13px;
     border-radius: 5px;;
+    @include mobile {
+      padding: 8px;
+    }
     .triangle {
       position: absolute;
       top: 0;
@@ -242,6 +246,7 @@ export default {
     text-align: center;
     @include mobile {
       width: 100%;
+      margin-top: 50px;
     }
     li {
       position: relative;
@@ -273,6 +278,9 @@ export default {
       }
       .num {
         display: block;
+        margin-bottom: 5px;
+        font-size: 14px;
+        color:#585858;
         font-family:  var(--mainNum-font);;
       }
      

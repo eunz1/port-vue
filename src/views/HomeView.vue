@@ -1,6 +1,7 @@
 <script setup>
 import IntroPart from '@/components/IntroPart.vue'
 import MacUiPart from '@/components/MacUiPart.vue'
+import SubTitlePart from '@/components/SubTitlePart.vue'
 import ContactPart from '@/components/ContactPart.vue'
 import ProfilePart from '@/components/ProfilePart.vue'
 import ProjectPart from '@/components/ProjectPart.vue'
@@ -13,7 +14,7 @@ import Footer from '@/components/FooterPart.vue'
 <template>
 <div class="wrap">
   <MacUiPart/>
-  <Header/>
+  <SubTitlePart/>
   <main>
     <IntroPart/>
     <ProfilePart/>

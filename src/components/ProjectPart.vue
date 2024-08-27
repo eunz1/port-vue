@@ -1,9 +1,9 @@
 <template>
-  <section ref="targetParent" class="project">
+  <section ref="targetParent" class="project section-unit">
     <ul ref="target">
       <li v-for="(item, index) in portListData" :key="index">
-        <strong class="project__num lobster">{{ index + 1 }}</strong>
-          <a :href="item.url" target="_blank">
+        <strong class="project__num lobster">( No.{{ index + 1 }} )</strong>
+          <a :href="item.url" target="_blank" class="project__link">
             <figure class="project__logo">
               <img :src="item.img" alt="">
             </figure>
@@ -30,6 +30,9 @@
               <span>
 
               </span>
+            </div>
+            <div class="project__go lobster">
+             ( <span>View Detail </span>  )
             </div>
           </a>
       </li>
@@ -93,7 +96,6 @@ export default {
         const main = document.querySelector('main')
         const targetChild = target.value;
         let targetWidth =  targetChild.offsetWidth;
-        console.log(targetChild.offsetWidth, main.offsetWidth)
         let amountScroll =  targetWidth - main.offsetWidth
 
          gsap.to(target.value, {
@@ -105,7 +107,6 @@ export default {
             end: "+="+amountScroll,
             scrub: true, 
             pin:true,
-            
           },
           duration: 2
         });
@@ -136,7 +137,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
+@import "@/assets/scss/_mixin.scss";
  section {
   margin-top: 100px;
  }
@@ -150,14 +151,21 @@ export default {
       position: relative;
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
       align-items: center;
-      width: 60vw;
       flex-shrink: 0;
-      padding: 0 20px;
+      width: 30vw;
+      padding: 20px;
       margin: 0 20px;
-      background: #a6a998;
-      border-radius: 10px;
-      box-shadow: 0px 16px 20px 4px rgba(0, 0, 0, 0.3);
+      background: #d2c1b8;
+      // background: #5f5E66;
+      box-shadow: 12px -8px 19px 1px rgba(0, 0, 0, 0.2);
+      @include mobile {
+        width: 60vw;
+      }
+      @include pad {
+        width: 45vw;
+      }
       &:nth-child(2) {
       }
       &:nth-child(3) {
@@ -170,26 +178,83 @@ export default {
   .project {
     &__num {
       display: block;
-      font-size: 6vh;
+      font-size: 2.5vh;
       position: absolute;
-      top:0;
-      left:30px;
-      transform: translateY(-50%);
+      top: 0;
+      line-height: 1;
+      left: 0px;
+      transform: translateY(-128%);
+    }
+    &__link {
+      display: block;
+      width: 100%;
+      height: 100%;
+      &:hover {
+        .project__logo {
+          img {
+            transform: scale(1.1);
+          }
+        }
+        .project__go {
+          span {
+            &::after {
+              width: 95%;
+            }
+          }
+        }
+      }
     }
     &__logo {
       position: relative;
-      padding-top: 50%;
+      width: 100%;
+      height: 60%;
+      margin: 0 auto;
+      opacity: .8;
+      overflow: hidden;
       img {
-        position: absolute;
-        top:0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: scale(1);
+        transition: 0.3s ease all;
+        @include mobile {
+          object-fit: contain;
+        }
       }
     }
     &__txt {
+      margin-top: 20px;;
       dl {
         display: flex;
         margin-top:10px;
         dt {
           width: 30%;
+          flex-shrink: 0;
+          white-space: nowrap;
+
+        }
+        dd {
+        }
+      }
+    }
+    &__go {
+      position: absolute;
+      right:0;
+      bottom:0;
+      transform: translateY(100%);
+      text-align: right;
+      font-size: 2.5vh;
+      span {
+        position: relative;
+        &:after {
+          position: absolute;
+          left:0;
+          bottom:0;
+          width: 0%;
+          height:1px;
+          background: #000;
+          transition: 0.3s ease all;
+          content:'';
         }
       }
     }

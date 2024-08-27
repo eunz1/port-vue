@@ -32,4 +32,9 @@
   @media (max-width: 768px) {
     @content
   }
+};
+@mixin pad {
+  @media (min-width:769px) and (max-width: 1200px) {
+    @content
+  }
 }

@@ -8,10 +8,6 @@
   </div>
 </template>
 <style lang="scss" scoped>
-.toolbar-wrap {
-
-  
-}
 .toolbar {
   position: fixed;
   top:15px;

@@ -1,5 +1,5 @@
 <template>
-  <section ref="introBox" class="intro">
+  <section ref="introBox" class="intro section-unit">
       <div class="intro__inner">
         <div class="mac-box">
           <!-- <div class="mac-box__toolbar">
@@ -31,7 +31,8 @@ export default {
     onMounted(()=>{
       nextTick(()=>{
         const main = document.querySelector('main')
-        console.log(introBox.value.clientHeight)
+        const contact = document.querySelector('.contact')
+        console.log(contact)
         gsap.to(introText1.value,{
           opacity:1,
           translateY:0,
