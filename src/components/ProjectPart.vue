@@ -1,7 +1,8 @@
 <template>
   <section ref="targetParent" class="project section-unit">
+    <!-- <h2 class="project__tit" :class="{'fixed':isFixed}">Project</h2> -->
     <ul ref="target">
-      <li v-for="(item, index) in portListData" :key="index">
+      <li class="project__item" v-for="(item, index) in portListData" :key="index" :style="{backgroundColor: item.color}">
         <strong class="project__num lobster">( No.{{ index + 1 }} )</strong>
           <a :href="item.url" target="_blank" class="project__link">
             <figure class="project__logo">
@@ -54,6 +55,7 @@ export default {
   setup() {
     const target = ref(null)
     const targetParent = ref(null)
+    const isFixed = ref(false)
     const portListData = ref([
       {
         name:'명품판매 이커머스 오케이몰 운영',
@@ -63,6 +65,7 @@ export default {
         img:logo1,
         url:'https://harmonious-fang-850.notion.site/4d816ff6bc46455a8fffcabacadb9465',
         text:'1',
+        color:"#000"
       },
       { name:'MPX GALLERY 구축',
         role:'PA',
@@ -70,7 +73,8 @@ export default {
         stack:'HTML, SCSS ,JavaScript, gulp, tailwind',
         img:logo2,
         url:'https://harmonious-fang-850.notion.site/MPX-GALLERY-140fa891ed5d474e95893202abac2731',
-        text:'2'
+        text:'2',
+        color:"#003da6"
       },
       { name:'삼성 디지털프라자 프로젝트 구축',
         role:'PA',
@@ -78,7 +82,8 @@ export default {
         stack:'HTML, SCSS ,JavaScript, Gulp',
         img:logo3,
         url:'https://harmonious-fang-850.notion.site/09daae6abc8c4caea5bc721c03186071',
-        text:'3'
+        text:'3',
+        color:"#222"
       },
       { name:' 롯데 통합 e커머스 구축 및 운영',
         role:'PA',
@@ -86,7 +91,8 @@ export default {
         stack:'Vue2, SCSS, JavaScript',
         img:logo4,
         url:'https://harmonious-fang-850.notion.site/LOTTE-ON-19e438e7fa574faabb9c918cc373bfa4',
-        text:'4'
+        text:'4',
+        color:"#E4002B"
       }
       
     ])
@@ -95,39 +101,27 @@ export default {
       nextTick(()=>{
         const main = document.querySelector('main')
         const targetChild = target.value;
-        let targetWidth =  targetChild.offsetWidth;
-        let amountScroll =  targetWidth - main.offsetWidth
-
-         gsap.to(target.value, {
-          x: -amountScroll,
-          scrollTrigger: {
-            trigger: targetParent.value,
-            scroller:main,
-            start: "top 25%",
-            end: "+="+amountScroll,
-            scrub: true, 
-            pin:true,
-          },
-          duration: 2
-        });
-        //   gsap.to(main,{
-        //   scrollTrigger: {
-        //    trigger: targetParent.value,
-        //     scroller:main,
-        //     scrub:true,
-        //     start:"top bottom",
-        //     end:"bottom"+"+="+amountScroll,
-           
-        //     markers:true
-        //   },
-        //     onUpdate:()=>{console.log('??')}
-        // })
+        gsap.to(target.value,{
+          scrollTrigger:{
+            trigger:target.value,
+            start:"top top",
+            end:"bottom bottom",
+            // markers:true,
+            onEnter:()=>{
+              console.log('en')
+              isFixed.value =true
+            },
+            onEnterBack:()=>{
+              isFixed.value =false
+            }
+          }
+        })
         
-       
       })
     })
     return {
       target,
+      isFixed,
       targetParent,
       portListData
     }
@@ -138,131 +132,46 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/assets/scss/_mixin.scss";
- section {
-  margin-top: 100px;
- }
-  ul {
-    display: flex;
-    width:fit-content;
-    height: 50vh;
-    // overflow: hidden;
-    will-change: transform;
-    li {
-      position: relative;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      flex-shrink: 0;
-      width: 30vw;
-      padding: 20px;
-      margin: 0 20px;
-      background: #d2c1b8;
-      // background: #5f5E66;
-      box-shadow: 12px -8px 19px 1px rgba(0, 0, 0, 0.2);
-      @include mobile {
-        width: 60vw;
-        padding: 10px;
-      }
-      @include pad {
-        width: 45vw;
-      }
-      &:nth-child(2) {
-      }
-      &:nth-child(3) {
-      }
-      &:nth-child(2) {
-      }
-      // margin-right:1vw;
-    }
+.project {
+  position: relative;
+  padding-top:40vw;
+  background: #fff;
+  &__tit {
+    position: absolute;
+    top:50px;
+    left:50%;
+    transform: translateX(-50%);
+    color:#fff;
+     mix-blend-mode: difference; /* 텍스트와 배경의 색상을 반전시킴 */
+     z-index: 10;
+     &.fixed {
+      position: fixed;
+     }
   }
-  .project {
-    &__num {
-      display: block;
-      font-size: 2.5vh;
-      position: absolute;
-      top: 0;
-      line-height: 1;
-      left: 0px;
-      transform: translateY(-128%);
-    }
-    &__link {
-      display: block;
-      width: 100%;
-      height: 100%;
-      &:hover {
-        .project__logo {
-          img {
-            transform: scale(1.1);
-          }
-        }
-        .project__go {
-          span {
-            &::after {
-              width: 95%;
-            }
-          }
-        }
-      }
-    }
-    &__logo {
-      position: relative;
-      width: 100%;
-      height: 60%;
-      margin: 0 auto;
-      opacity: .8;
-      overflow: hidden;
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transform: scale(1);
-        transition: 0.3s ease all;
-        @include mobile {
-          object-fit: contain;
-        }
-      }
-    }
-    &__txt {
-      margin-top: 20px;;
-      word-break: keep-all;
-      @include mobile {
-        font-size: 12px;
-        margin-top: 10px;;
-      }
-      dl {
-        display: flex;
-        margin-top:10px;
-        dt {
-          width: 30%;
-          flex-shrink: 0;
-          white-space: nowrap;
-
-        }
-        dd {
-        }
-      }
-    }
-    &__go {
-      position: absolute;
-      right:0;
-      bottom:0;
-      transform: translateY(100%);
-      text-align: right;
-      font-size: 2.5vh;
-      span {
-        position: relative;
-        &:after {
-          position: absolute;
-          left:0;
-          bottom:0;
-          width: 0%;
-          height:1px;
-          background: #000;
-          transition: 0.3s ease all;
-          content:'';
-        }
-      }
-    }
+  &__item {
+    width: 100%;
+    height: 100vh;
+    position: sticky;
+    top:0;
+    left:0;
   }
+  &__link {
+    display: block;
+    width:100%;
+    height: 100%;
+    padding: 14px 14px;
+  }
+  &__logo {
+    margin-top: 14px;
+  }
+  &__num {
+    position: absolute;
+    top: 14px;
+    left:14px;
+    font-weight: 200;
+  }
+}
+li {
+  
+}
 </style>

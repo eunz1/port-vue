@@ -1,24 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
-@import url("https://websfont.github.io/nanumSquareNeo/nanumSquareNeo.css");
-@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
-@import url("https://websfont.github.io/gmarket/gmarket.css");
-.mont {
-    font-family: "Montserrat";
-}
-.playfair{
-    font-family: "Playfair Display", serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-  }
-.nanum {
-    font-family: "nanumSquareNeo";
-}
-.gmarket {
-    font-family: "gmarket";
-}
-.lobster {
-    font-family: "Lobster", sans-serif;
+@font-face {
+    font-family: 'Pretendard';
+    src: url('../Fonts/Pretendard-Bold.woff') format('woff2'),
+         url('../Fonts/Pretendard-Bold.woff2') format('woff');
     font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Pretendard';
+    src: url('../Fonts/Pretendard-ExtraLight.woff2') format('woff2'),
+         url('../Fonts/Pretendard-ExtraLight.woff') format('woff');
+    font-weight: 200;
     font-style: normal;
 }

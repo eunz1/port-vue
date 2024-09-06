@@ -12,17 +12,20 @@ export default {
   setup() {
     const subTitle= ref(null)
     onMounted(()=>{
-      const main = document.querySelector('main')
       const sections = gsap.utils.toArray('.section-unit');
       const titles = ['Intro','Profile','Project','contact'];
       sections.forEach((section, i)=>{
         ScrollTrigger.create({
-          scroller:main,
-          trigger: section,
-          start: i === 2 ? "top 25%" : i ===3 ?"bottom 50% ":'top top',
-           end: i === 3 ? 'right right' : 'bottom top',
+          trigger:section,
+          start:'top top',
+          end: i===0?'+=250':'bottom 50%',
           scrub: true,
+          markers:{
+            start:"startdssss"+i,
+            end:"endssss"+i
+          },
           onEnter: () => {
+            console.log(i)
             const index = sections.indexOf(section);
             subTitle.value.textContent = titles[index];
           },
@@ -42,9 +45,12 @@ export default {
 <style lang="scss" scoped>
   .sub-title {
     position: fixed;
-    right: 25px;
+    left: 50%;
+    transform: translate(-50%);
     top: 60px;
     font-size: 30px;
     z-index: 10;
+    color:#fff;
+    mix-blend-mode: difference;
   }
 </style>

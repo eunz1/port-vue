@@ -26,11 +26,11 @@ const scrollAnimation = () => {
       });
 
       function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
+        // lenis.raf(time);
+        // requestAnimationFrame(raf);
       }
 
-      requestAnimationFrame(raf);
+      // requestAnimationFrame(raf);
 
       lenis.on("scroll", (e) => {
       });
@@ -41,49 +41,32 @@ const scrollAnimation = () => {
 };
 
 onMounted(() => {
-  scrollAnimation();
+  // scrollAnimation();
 });
 </script>
 
 <template>
 <div class="wrap">
-  <MacUiPart/>
+  <!-- <MacUiPart/> -->
   <SubTitlePart/>
   <main>
     <IntroPart/>
     <ProfilePart/>
     <ProjectPart/>
-    <ContactPart/>
-    <Footer/>
+    <!-- <ContactPart/> -->
+    <!-- <Footer/> -->
   </main>
 </div>
   
 </template>
 <style lang="scss" scoped>
 .wrap {
-  display: flex;
-  justify-content: center;
-  // align-items: center;
-  box-sizing: border-box;
-  // background: #000;
-  height: 100vh;
+  font-family: 'Pretendard';
+  // overflow-x: hidden;
+
 }
 main {
-  width: calc(100% - 30px);
-  height: calc(100% - 68px);
-  margin-top: 53px;
-  padding: 0 15px;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  border-radius: 0 0 10px 10px;
-  box-shadow: 6px -8px 20px 20px rgba(0, 0, 0, 0.35);
-  // background: #c4bfb9;
-  background: #d8cbc5;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
-  &::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
-  }
+
 }
 
 

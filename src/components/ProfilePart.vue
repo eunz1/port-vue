@@ -1,121 +1,144 @@
 <template>
   <section class="profile section-unit" ref="profileBox">
       <!-- <div class="profile__tit lobster" ref="profileTit">Profile</div> -->
-      <div class="profile__inner" ref="profilePhoto">
-        <div class="profile__photo">
-          <figure>
-            <div class="photo-box">
-              <img :src="mypic" alt="프로필 사진">
-            </div>
-            <figcaption>
-              <p class="profile__balloon">"기획과 개발 사이를 튼튼하게 이어주는 꼼꼼한 퍼블리싱을 하는 웹퍼블리셔 송은지 입니다."<span class="triangle"></span></p>
-              <span class="tag-tit lobster">Skills</span>
-              <ul>
-                <li>
-                   <span class="tag">HTML5</span>
-                </li>
-                <li>
-                   <span class="tag">CSS</span>
-                </li>
-                <li>
-                   <span class="tag">Javascript/Jquery</span>
-                </li>
-                <li>
-                   <span class="tag">Vue.js</span>
-                </li>
-                <li>
-                </li>
-                <li>
-                   <span class="tag-tit lobster">Tools</span>
-                   <span class="tag">Git</span>
-                   <span class="tag">Photoshop</span>
-                   <span class="tag">Figma</span>
-                   <span class="tag">Zeplin</span>
-                </li>
-              </ul>
-            </figcaption>
-          </figure>
+      <div class="profile__hello-wrap" ref="helloWrap">
+        <div class="profile__hello" :class="{'blur':isEnter}" ref="helloMessage">
+          <div class="hello-photo">
+            <img :src="mypic" alt="아바타 사진">
+          </div>
+          <p >
+            안녕하세요, 6년 4개월차 경력의 웹 퍼블리셔 송은지 입니다.
+            기획과 디자인, 개발 사이를 잘 이어주는 꼼꼼한 UI/UX 구현을
+            지향합니다. 
+          </p>
         </div>
-        <ul class="profile__cont" ref="profileCont">
-          <li><span class="num">2016.2</span>🎓<br>수원대학교 사학과 졸업</li>
-          <li><span class="num">2016.2 </span>📝<br>컴퓨터활용능력 2급 취득</li>
-          <li><span class="num">2017.1 ~ 2017.5  </span>🎓<br>봄아카데미: 웹퍼블리셔 양성과정 수료 </li>
-          <li><span class="num">2017.12 ~ 2021.12  </span>👩🏻‍💻<br> 웹에이전시: 디파이(DFY) <br> 4년 0개월 근무</li>
-          <li><span class="num">2019.11 </span>📝<br>정보처리기사 취득</li>
-          <li><span class="num">2022.01 ~ 2024.04 </span>👩🏻‍💻<br>명품판매 이커머스: 오케이몰(OKmall)<br>2년 4개월 근무</li>
-        </ul>
       </div>
+      <ul ref="profileImg" class="profile__image">
+        <li class="profile__image-item">
+          <figure class="profile__image-img">
+            <img :src="profileImg1" alt="프로필이미지1" ref="imgTarget">
+          </figure>
+          <figure class="profile__image-img">
+            <img :src="profileImg2" alt="프로필이미지2" ref="imgTarget">
+          </figure>
+          <div class="profile__image-desc">
+            <p>4년간의 웹에이전시, 2년 4개월의 중견기업 이커머스 운영 퍼블리셔로 근무했습니다 </p>
+            <p>HTML, CSS3, SCSS, Jquery, JavaScript를 사용하며</p>
+            <p>기획,디자인과는 Photoshop, Zeplin, Figma로 협업 했고 <br>팀 내에서는 Gitlab 사용하였습니다.</p>
+          </div>
+        </li>
+        <li class="profile__image-item">
+          <figure class="profile__image-img">
+            <img :src="profileImg3" alt="프로필이미지3" ref="imgTarget">
+          </figure>
+          <figure class="profile__image-img">
+            <img :src="profileImg4" alt="프로필이미지4" ref="imgTarget">
+          </figure>
+          <div class="profile__image-desc">
+            <p>항상 밝은 모습으로 모든 사람들과 커뮤니케이션 하기를 즐기는 성격입니다.</p>
+            <p>꼼꼼하고 </p>
+            <p>생산성향상, 자기계발에 관심이 많으며 안주하지 않고 끊임없이 발전하는 모습 보여드리겠습니다.</p>
+          </div>
+        </li>
+      </ul>
   </section>
 </template>
 <script>
 import { ref, onMounted, nextTick } from 'vue';
 import { gsap } from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
-
 gsap.registerPlugin(ScrollTrigger);
 import mypic from "../assets/Images/my_pic.png"
+import profileImg1 from "../assets/Images/profile_1.jpg"
+import profileImg2 from "../assets/Images/profile_2.jpg"
+import profileImg3 from "../assets/Images/profile_3.jpg"
+import profileImg4 from "../assets/Images/profile_4.jpg"
 export default {
   setup() {
     const profileBox = ref(null)
-    const profileTit = ref(null)
-    const profilePhoto = ref(null)
-    const profileCont = ref(null)
+    const helloWrap = ref(null)
+    const profileImg = ref(null)
+    const helloMessage = ref(null)
+    const imgTarget = ref([]);
+    const isEnter = ref(false);
     onMounted(()=>{
       nextTick(()=>{
         const main = document.querySelector('main')
         const project = document.querySelector('.project')
-        const listItems = profileCont.value.querySelectorAll('li');
+        const imgArray = document.querySelectorAll('.profile__image-img')
+        const HelloTL = gsap.timeline({
+          // scrollTrigger: {
+          //   trigger: helloWrap.value,
+          //   start: "top 50%",
+          //   // endTrigger: profileImg.value, // profileImg가 끝날 때 고정 해제
+          //   end: "+=1000", // profileImg의 끝 지점에 고정 해제
+          //   pin:true,
+          //   scrub:0.5,
+          //   markers:true,
+          //   onEnter:()=>{
+          //       // console.log('profile')
+          //       setTimeout(()=>{
+          //         isEnter.value = true
+          //       },600)
 
-
-        gsap.to(profileTit,{
-
+          //   },
+          //   onEnterBack:()=>{
+          //     // console.log("ddd,")
+          //     isEnter.value = true
+          //   },
+          //   onLeave:()=>{
+          //     isEnter.value = false
+          //     // console.log('end')
+          //   },
+          //   onLeaveBack:()=>{
+          //     isEnter.value = false
+          //   }
+          // }
         })
-        //이력 등장 
-        listItems.forEach((item, index) => {
-          gsap.to(item, {
-            opacity: 1,
-            y: 0,
-            duration: 0.3,
+        gsap.from(helloMessage.value,{
+          yPercent:-50,
+          opacity:0,
+          duration:1,
+          scrollTrigger: {
+            trigger:helloMessage.value,
+            start: "top 70%",
+            end:"bottom 65%",
+            // markers:true,
+            scrub:1
+          }
+        })
+        imgArray.forEach((item, index) => {
+          gsap.to(item.querySelector('img'), {
+            yPercent: 10,
+            delay: (index * 0.4),
             scrollTrigger: {
-              scroller:main,
               trigger: item,
-              start: 'top 80%', 
-            },
+              start: "top 80%",
+              end: "bottom top",
+              scrub: true,
+              // markers: true
+            }
           });
-        });  
-        //   gsap.fromTo(main,{
-        //   backgroundColor:"rgb(0,0,0)",
-        //   scrollTrigger: {
-        //    trigger: profileBox.value,
-        //     scroller:main,
-        //     scrub:1,
-        //     start:"bottom 50%",
-        //     end:"bottom 20%",
-        //     markers:true
-        //   },
-        //     onUpdate:()=>{console.log('??')}
+        });
+        // HelloTL.to(profileImg.value,{
+        //   yPercent:-100,
+        //   ease:"none",
+        //   duration:1
         // })
-        //  gsap.to(profileBox.value,{
-        //   scrollTrigger: {
-        //     trigger:profileBox.value,
-        //     scroller:main,
-        //     scrub:true,
-        //     pin:true,
-        //     start:"top center",
-        //     end:`+=${profileBox.value.clientHeight}`,
-        //     markers:true
-        //   },
-        // })
-       
-        
       })
     })
     return {
+      isEnter,
       profileBox,
-      profileTit,
-      profilePhoto,
-      profileCont,
-      mypic
+      profileImg,
+      helloWrap,
+      helloMessage,
+      mypic,
+      profileImg1,
+      profileImg2,
+      profileImg3,
+      profileImg4,
+      imgTarget
     }
   }
   
@@ -125,7 +148,66 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/scss/_mixin.scss";
  .profile{
+  background: #fff;
    padding:50px 0;
+  //  background: lime;
+   &__hello {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      font-size: 2rem;
+      font-weight: 200;
+      &.blur {
+        opacity: 0.5!important;
+      }
+      &-wrap {
+        // height: 100vh;
+      }
+      & > p {
+         grid-column: span 6;
+      }
+      .hello-photo {
+        grid-column: 2/span 1;
+        img {
+          width: 100%;
+        }
+      }
+   }
+   &__image {
+      padding: 0 14px;
+      font-weight: 200;
+      // background: #585858;
+      img {transition: 0.3s ease all;}
+      &-item {
+        display: grid;
+        grid-template-columns: repeat(12,1fr);
+        padding-top: 20vw;
+        &:first-child {
+          .profile__image-img {
+            &:nth-child(2) {
+              margin-top: 10vw;
+              grid-column: 6/span 3;
+            }
+          }
+        }
+        &:nth-child(2) {
+          margin-top: 20vw;
+          .profile__image-img {
+            &:nth-child(2) {
+              margin-top: 25vw;
+              grid-column: 7/span 3;
+            }
+          }
+        }
+      }
+      
+      &-img {
+        grid-column: 2/span 3;
+      }
+      &-desc {
+        grid-column: 10/span 3;
+        word-break: keep-all;
+      }
+   }
   &__tit{
     position: sticky;
     top: 0;
