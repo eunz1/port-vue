@@ -13,17 +13,14 @@ export default {
     const subTitle= ref(null)
     onMounted(()=>{
       const sections = gsap.utils.toArray('.section-unit');
-      const titles = ['Intro','Profile','Project','contact'];
+      const titles = ['Intro','Profile','Project','Summary','Contact'];
       sections.forEach((section, i)=>{
         ScrollTrigger.create({
           trigger:section,
           start:'top top',
           end: i===0?'+=250':'bottom 50%',
           scrub: true,
-          markers:{
-            start:"startdssss"+i,
-            end:"endssss"+i
-          },
+          
           onEnter: () => {
             console.log(i)
             const index = sections.indexOf(section);

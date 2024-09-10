@@ -5,6 +5,7 @@ import SubTitlePart from '@/components/SubTitlePart.vue'
 import ContactPart from '@/components/ContactPart.vue'
 import ProfilePart from '@/components/ProfilePart.vue'
 import ProjectPart from '@/components/ProjectPart.vue'
+import ProjectTablePart from '@/components/ProjectTablePart.vue'
 import Skip from '@/components/SkipPart.vue'
 import Header from '@/components/HeaderPart.vue'
 import Footer from '@/components/FooterPart.vue'
@@ -53,6 +54,7 @@ onMounted(() => {
     <IntroPart/>
     <ProfilePart/>
     <ProjectPart/>
+    <ProjectTablePart/>
     <!-- <ContactPart/> -->
     <!-- <Footer/> -->
   </main>
