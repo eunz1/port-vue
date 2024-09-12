@@ -1,6 +1,9 @@
 <template>
   <section class="profile section-unit" ref="profileBox">
       <!-- <div class="profile__tit lobster" ref="profileTit">Profile</div> -->
+      <Marquee-part>
+         <div style="">안녕하세요 HELLO Nǐ hǎo Hola こんにちは Bonjour</div>
+      </Marquee-part>
       <div class="profile__hello-wrap" ref="helloWrap">
         <div class="profile__hello" :class="{'blur':isEnter}" ref="helloMessage">
           <div class="hello-photo">
@@ -18,29 +21,31 @@
           <figure class="profile__image-img">
             <img :src="profileImg1" alt="프로필이미지1" ref="imgTarget">
           </figure>
-          <figure class="profile__image-img">
-            <img :src="profileImg2" alt="프로필이미지2" ref="imgTarget">
-          </figure>
           <div class="profile__image-desc">
             <p>4년간의 웹에이전시, 2년 4개월의 중견기업 이커머스 운영 퍼블리셔로 근무했습니다 </p>
             <p>HTML, CSS3, SCSS, Jquery, JavaScript를 사용하며</p>
             <p>기획,디자인과는 Photoshop, Zeplin, Figma로 협업 했고 <br>팀 내에서는 Gitlab 사용하였습니다.</p>
           </div>
+          <figure class="profile__image-img">
+            <img :src="profileImg2" alt="프로필이미지2" ref="imgTarget">
+          </figure>
         </li>
         <li class="profile__image-item">
-          <figure class="profile__image-img">
-            <img :src="profileImg3" alt="프로필이미지3" ref="imgTarget">
-          </figure>
           <figure class="profile__image-img">
             <img :src="profileImg4" alt="프로필이미지4" ref="imgTarget">
           </figure>
           <div class="profile__image-desc">
             <p>항상 밝은 모습으로 모든 사람들과 커뮤니케이션 하기를 즐기는 성격입니다.</p>
-            <p>꼼꼼하고 </p>
-            <p>생산성향상, 자기계발에 관심이 많으며 안주하지 않고 끊임없이 발전하는 모습 보여드리겠습니다.</p>
+            <p>꼼꼼한 성향으로 생산성향상, 자기계발에 관심이 많으며<br> 안주하지 않고 끊임없이 발전하는 모습 보여드리겠습니다.</p>
           </div>
+          <!-- <figure class="profile__image-img">
+            <img :src="profileImg3" alt="프로필이미지3" ref="imgTarget">
+          </figure> -->
+          
+          
         </li>
       </ul>
+      
   </section>
 </template>
 <script>
@@ -53,7 +58,9 @@ import profileImg1 from "../assets/Images/profile_1.jpg"
 import profileImg2 from "../assets/Images/profile_2.jpg"
 import profileImg3 from "../assets/Images/profile_3.jpg"
 import profileImg4 from "../assets/Images/profile_4.jpg"
+import MarqueePart from '@/components/MarqueePart.vue'
 export default {
+  components: { MarqueePart },
   setup() {
     const profileBox = ref(null)
     const helloWrap = ref(null)
@@ -108,9 +115,19 @@ export default {
           }
         })
         imgArray.forEach((item, index) => {
+          gsap.from(item,{
+            opacity:0,
+            yPercent:50,
+            scrollTrigger: {
+              trigger: item,
+              start: "top 80%",
+              end: "bottom top",
+              // markers: true
+            }
+          })
           gsap.to(item.querySelector('img'), {
             yPercent: 10,
-            delay: (index * 0.4),
+            delay: (index * 0.9),
             scrollTrigger: {
               trigger: item,
               start: "top 80%",
@@ -138,7 +155,8 @@ export default {
       profileImg2,
       profileImg3,
       profileImg4,
-      imgTarget
+      imgTarget,
+      MarqueePart
     }
   }
   
@@ -154,6 +172,7 @@ export default {
    &__hello {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
+      margin-top:10vh;
       font-size: 2rem;
       font-weight: 200;
       &.blur {
@@ -176,35 +195,53 @@ export default {
       padding: 0 14px;
       font-weight: 200;
       // background: #585858;
-      img {transition: 0.3s ease all;}
+      img {
+        width: 100%;
+        height: 110%;
+        object-fit: cover;;
+        transition: 0.3s ease all;
+      }
       &-item {
         display: grid;
         grid-template-columns: repeat(12,1fr);
         padding-top: 20vw;
+        align-items: start;
         &:first-child {
           .profile__image-img {
-            &:nth-child(2) {
-              margin-top: 10vw;
-              grid-column: 6/span 3;
+            &:nth-child(1) {
+              grid-column: 1/ span 7;
             }
+            &:nth-child(3) {
+              margin-top: 40vw;
+              grid-column: 6/span 7;
+            }
+          }
+          .profile__image-desc {
+            margin-top: 20vw;
           }
         }
         &:nth-child(2) {
-          margin-top: 20vw;
+          margin-bottom:15vh;
           .profile__image-img {
-            &:nth-child(2) {
-              margin-top: 25vw;
-              grid-column: 7/span 3;
+            &:nth-child(1) {
+              margin-top: 15vw;
+              grid-column: 4/span 6;
             }
+          }
+          .profile__image-desc {
+            margin-top: 10px;
+            grid-column: 4/span 6;
           }
         }
       }
       
       &-img {
         grid-column: 2/span 3;
+        overflow: hidden;
+        // transition: 0.3s ease all;
       }
       &-desc {
-        grid-column: 10/span 3;
+        grid-column: 2/span 3;
         word-break: keep-all;
       }
    }

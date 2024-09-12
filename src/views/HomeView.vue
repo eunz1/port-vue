@@ -27,7 +27,7 @@ const scrollAnimation = () => {
       });
 
       function raf(time) {
-        // lenis.raf(time);
+        lenis.raf(time);
         // requestAnimationFrame(raf);
       }
 
@@ -55,7 +55,7 @@ onMounted(() => {
     <ProfilePart/>
     <ProjectPart/>
     <ProjectTablePart/>
-    <!-- <ContactPart/> -->
+    <ContactPart/>
     <!-- <Footer/> -->
   </main>
 </div>

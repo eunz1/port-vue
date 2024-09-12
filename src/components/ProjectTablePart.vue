@@ -24,15 +24,39 @@ export default {
   setup() {
     const summaryListData = ref([
       {
-        date:"21.1",
-        name:"더현대서울",
-        skill:"",
+        date:"21.5 ~ 21.10",
+        name:"웹에이전시 DFY 자사홈페이지 리뉴얼",
+        skill:"vue3",
         role:"PA"
       },
       {
-        date:"21.5",
-        name:"DFY리뉴얼",
-        skill:"vue3",
+        date:"21.1 ~ 21.2",
+        name:"더현대서울 홈페이지 구축",
+        skill:"HTML, CSS, JQUERY, gulp",
+        role:"PA"
+      },
+      {
+        date:"19.5 ~ 19.6",
+        name:"현대 모빌리티 ZET 홈페이지 구축",
+        skill:"HTML, CSS, JQUERY",
+        role:"PA"
+      },
+      {
+        date:"18.10 ~ 19.04",
+        name:" 현대호텔 LAHAN 웹사이트 구축 - 서브페이지 퍼블리싱",
+        skill:"HTML, CSS, JQUERY, gulp",
+        role:"PA"
+      },
+      {
+        date:"18.11",
+        name:"프리메라 홈페이지 리뉴얼 제안 페이지 제작  ",
+        skill:"HTML, CSS, JQUERY",
+        role:"PA"
+      },
+      {
+        date:"18.7 ~ 18.8",
+        name:"Hokkoku Bank Japan 홈페이지 구축  ",
+        skill:"HTML, CSS, JQUERY",
         role:"PA"
       }
     ])
@@ -43,4 +67,33 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+  .table { 
+    padding: 30px 14px;
+    background: #000;
+    color:#fff;
+  }
+  .summary {
+    font-weight: 200;
+    &__item {
+      padding: 0 10px; 
+      border-bottom: 1px solid #fff;
+    }
+    &-text {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      &__date {
+        grid-column: 1 / span 1;
+      }
+      &__name {
+        grid-column: span 8;
+      }
+      &__role {
+        grid-column: span 1;
+      }
+      &__skill {
+        grid-column: span 2;
+      }
+    }
+
+  }
 </style>

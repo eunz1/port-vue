@@ -15,12 +15,41 @@
 <style lang="scss" scoped>
 @import "@/assets/scss/_mixin.scss";
 .contact {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90vh;
-  margin-top: 100px;
+  height: 100vh;
   text-align: center;
+  // background-image:url('../assets/Images/bg_contact.gif');
+  // background-repeat: no-repeat;
+  // background-attachment: fixed;
+  // background-position: center;
+  // background-size: cover;
+  &:before {
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height: 100%;
+    background-image:url('../assets/Images/bg_contact.gif');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    
+    content:''
+  }
+  &:after {
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    pointer-events: none;;
+    content:'';
+  }
   &__txt {
     font-size: 2vw;
     @include mobile {

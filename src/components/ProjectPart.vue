@@ -118,7 +118,7 @@ export default {
               start:"top top",
               end:"bottom top",
               scrub:true,
-              markers:true,
+              // markers:true,
 
               onEnter:()=>{
               console.log(i + 'start')
@@ -149,7 +149,7 @@ export default {
 @import "@/assets/scss/_mixin.scss";
 .project {
   position: relative;
-  padding-top:40vw;
+  padding-top:0;
   background: #fff;
   &__tit {
     position: absolute;
@@ -177,13 +177,14 @@ export default {
       left:0;
       background: #000;
       opacity: 0;
+      pointer-events: none;
     }
 
   }
   &__link {
+    display: block;
     width:100%;
     height: 100%;
-    
     &-inner {
       display: flex;
       flex-wrap: wrap;
