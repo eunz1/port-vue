@@ -49,12 +49,10 @@ export default {
         gsap.fromTo(item, {
           clipPath: "inset(0% 0% 100% 0%)",
           y: 25,
-          letterSpacing:"-50px"
         }, {
           duration: .8,
           clipPath: "inset(0% 0% 0% 0%)",
           y: 0,
-          letterSpacing:"0",
           delay: (i * 0.4)
           });
         });
@@ -69,6 +67,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import "@/assets/scss/_mixin.scss";
  .intro {
   position: relative;
   display: flex;
@@ -87,6 +86,9 @@ export default {
     text-transform: uppercase;
     color: #fff;
     transform-origin: left center;
+    @include mobile {
+      font-size: 40px;
+    }
   }
  }
 </style>

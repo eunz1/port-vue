@@ -2,9 +2,9 @@
   <section class="table section-unit">
     <ul class="summary">
       <li class="summary__item" v-for="(item,index) in summaryListData" :key="index">
-        <div class="summary-img">
+        <!-- <div class="summary-img">
             <img src="" alt="">
-        </div>
+        </div> -->
         <div class="summary-text">
           <span class="summary-text__date">{{item.date}}</span>
           <span class="summary-text__name">{{item.name}}</span>
@@ -43,7 +43,7 @@ export default {
       },
       {
         date:"18.10 ~ 19.04",
-        name:" 현대호텔 LAHAN 웹사이트 구축 - 서브페이지 퍼블리싱",
+        name:" 현대호텔 LAHAN 웹사이트 구축",
         skill:"HTML, CSS, JQUERY, gulp",
         role:"PA"
       },
@@ -75,17 +75,18 @@ export default {
   .summary {
     font-weight: 200;
     &__item {
-      padding: 0 10px; 
-      border-bottom: 1px solid #fff;
+      padding: 10px; 
+      border-bottom: 1px solid #767373;
     }
     &-text {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
+      align-items: center;
       &__date {
-        grid-column: 1 / span 1;
+        grid-column: 1 / span 2;
       }
       &__name {
-        grid-column: span 8;
+        grid-column: span 7;
       }
       &__role {
         grid-column: span 1;

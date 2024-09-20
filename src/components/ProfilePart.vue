@@ -21,8 +21,20 @@
           <figure class="profile__image-img">
             <img :src="profileImg1" alt="프로필이미지1" ref="imgTarget">
           </figure>
+          <div class="profile__image-desc profile-info">
+            <p>송은지</p>
+            <p>2016.2 수원대학교 사학과 졸업</p>
+            <hr>
+            <p>2016.2 컴퓨터활용능력 2급 취득</p>
+            <p>2019.11 정보처리기사 취득</p>
+            <hr>
+            <p>2017.12 ~ 2021.12 웹에이전시 디파이(DFY) </p>
+            <p>2022.01 ~ 2024.04 오케이몰(OKmall) </p>
+          </div>
+        </li>
+        <li class="profile__image-item">
           <div class="profile__image-desc">
-            <p>4년간의 웹에이전시, 2년 4개월의 중견기업 이커머스 운영 퍼블리셔로 근무했습니다 </p>
+            <p>4년간 웹에이전시 재직 후 공백없이 이직하여 2년 4개월의 중견기업 이커머스 운영 퍼블리셔로 근무했습니다. </p>
             <p>HTML, CSS3, SCSS, Jquery, JavaScript를 사용하며</p>
             <p>기획,디자인과는 Photoshop, Zeplin, Figma로 협업 했고 <br>팀 내에서는 Gitlab 사용하였습니다.</p>
           </div>
@@ -36,7 +48,7 @@
           </figure>
           <div class="profile__image-desc">
             <p>항상 밝은 모습으로 모든 사람들과 커뮤니케이션 하기를 즐기는 성격입니다.</p>
-            <p>꼼꼼한 성향으로 생산성향상, 자기계발에 관심이 많으며<br> 안주하지 않고 끊임없이 발전하는 모습 보여드리겠습니다.</p>
+            <p>꼼꼼한 성향으로 생산성 향상, 자기계발에 관심이 많으며<br> 안주하지 않고 끊임없이 발전하는 모습 보여드리겠습니다.</p>
           </div>
           <!-- <figure class="profile__image-img">
             <img :src="profileImg3" alt="프로필이미지3" ref="imgTarget">
@@ -115,9 +127,12 @@ export default {
           }
         })
         imgArray.forEach((item, index) => {
-          gsap.from(item,{
+          gsap.fromTo(item,{
             opacity:0,
             yPercent:50,
+          },{
+            opacity:1,
+            yPercent:0,
             scrollTrigger: {
               trigger: item,
               start: "top 80%",
@@ -175,6 +190,9 @@ export default {
       margin-top:10vh;
       font-size: 2rem;
       font-weight: 200;
+      @include mobile {
+        font-size: 1rem;
+      }
       &.blur {
         opacity: 0.5!important;
       }
@@ -194,6 +212,10 @@ export default {
    &__image {
       padding: 0 14px;
       font-weight: 200;
+      // &-img {
+      //   opacity: 0;
+      //   transform: translate(0,50%);
+      // }
       // background: #585858;
       img {
         width: 100%;
@@ -215,17 +237,19 @@ export default {
               margin-top: 40vw;
               grid-column: 6/span 7;
             }
+
           }
           .profile__image-desc {
-            margin-top: 20vw;
+            margin-top: 10vh;
+            grid-column: 9/ span 4;
           }
         }
         &:nth-child(2) {
-          margin-bottom:15vh;
+          margin:15vh 0;
           .profile__image-img {
+            margin-top: 15vw;
+              grid-column: 5/span 9;
             &:nth-child(1) {
-              margin-top: 15vw;
-              grid-column: 4/span 6;
             }
           }
           .profile__image-desc {
@@ -233,16 +257,33 @@ export default {
             grid-column: 4/span 6;
           }
         }
+        &:nth-child(3) {
+          padding:10vw 0 15vw;
+          .profile__image-img {
+             grid-column: 4/ span 6;
+          }
+          .profile__image-desc {
+            grid-column: 4/ span 6;
+            text-align: center;
+            margin-top:14px;
+          }
+        }
+        .profile-info {
+
+        }
       }
       
       &-img {
-        grid-column: 2/span 3;
+        // grid-column: 2/span 3;
         overflow: hidden;
         // transition: 0.3s ease all;
       }
       &-desc {
-        grid-column: 2/span 3;
+        // grid-column: 2/span 3;
         word-break: keep-all;
+        @include mobile{
+          font-size: 12px;
+        }
       }
    }
   &__tit{
